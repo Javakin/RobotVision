@@ -8,38 +8,38 @@
       <Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\RobWork\;CMake Files\..\..\..\RobWork\RobWork\;CMake Files\..\..\..\RobWork\RobWork\cmake\;" />
       <Build>
       <Target title="all">
-         <Option working_dir="/home/student/workspace/RoVi/Man2 Rob project-build" />
+         <Option working_dir="/home/student/Desktop/RobotVision/Man2 Rob project-build" />
          <Option type="4" />
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 all" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <Build command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 all" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
       <Target title="edit_cache">
-         <Option working_dir="/home/student/workspace/RoVi/Man2 Rob project-build" />
+         <Option working_dir="/home/student/Desktop/RobotVision/Man2 Rob project-build" />
          <Option type="4" />
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 edit_cache" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <Build command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 edit_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
       <Target title="rebuild_cache">
-         <Option working_dir="/home/student/workspace/RoVi/Man2 Rob project-build" />
+         <Option working_dir="/home/student/Desktop/RobotVision/Man2 Rob project-build" />
          <Option type="4" />
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <Build command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 rebuild_cache" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
       <Target title="RobMan2">
-         <Option output="/home/student/workspace/RoVi/Man2 Rob project-build/RobMan2" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/student/workspace/RoVi/Man2 Rob project-build" />
+         <Option output="/home/student/Desktop/RobotVision/Man2 Rob project-build/RobMan2" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/student/Desktop/RobotVision/Man2 Rob project-build" />
          <Option object_output="./" />
          <Option type="1" />
          <Option compiler="gcc" />
@@ -65,15 +65,15 @@
             <Add directory="/usr/local/include/eigen3" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 RobMan2" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <Build command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 RobMan2" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
       <Target title="RobMan2/fast">
-         <Option output="/home/student/workspace/RoVi/Man2 Rob project-build/RobMan2" prefix_auto="0" extension_auto="0" />
-         <Option working_dir="/home/student/workspace/RoVi/Man2 Rob project-build" />
+         <Option output="/home/student/Desktop/RobotVision/Man2 Rob project-build/RobMan2" prefix_auto="0" extension_auto="0" />
+         <Option working_dir="/home/student/Desktop/RobotVision/Man2 Rob project-build" />
          <Option object_output="./" />
          <Option type="1" />
          <Option compiler="gcc" />
@@ -99,26 +99,26 @@
             <Add directory="/usr/local/include/eigen3" />
          </Compiler>
          <MakeCommands>
-            <Build command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 RobMan2/fast" />
-            <CompileFile command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
-            <Clean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
-            <DistClean command="/usr/bin/make -f &quot;/home/student/workspace/RoVi/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <Build command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 RobMan2/fast" />
+            <CompileFile command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;" />
+            <Clean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
+            <DistClean command="/usr/bin/make -f &quot;/home/student/Desktop/RobotVision/Man2\ Rob\ project-build/Makefile&quot;  VERBOSE=1 clean" />
          </MakeCommands>
       </Target>
       </Build>
-      <Unit filename="/home/student/workspace/RoVi/Man2 Rob project/src/Main.cpp">
+      <Unit filename="/home/student/Desktop/RobotVision/Man2 Rob project/src/Main.cpp">
          <Option target="RobMan2"/>
       </Unit>
-      <Unit filename="/home/student/workspace/RoVi/Man2 Rob project/CMakeLists.txt">
+      <Unit filename="/home/student/Desktop/RobotVision/Man2 Rob project/CMakeLists.txt">
           <Option virtualFolder="CMake Files\" />
       </Unit>
-      <Unit filename="/home/student/workspace/RoVi/Man2 Rob project/../../../RobWork/RobWork/cmake/RobWorkConfigVersion.cmake">
+      <Unit filename="/home/student/Desktop/RobotVision/Man2 Rob project/../../../RobWork/RobWork/cmake/RobWorkConfigVersion.cmake">
           <Option virtualFolder="CMake Files\..\..\..\RobWork\RobWork\cmake\" />
       </Unit>
-      <Unit filename="/home/student/workspace/RoVi/Man2 Rob project/../../../RobWork/RobWork/cmake/RobWorkConfig.cmake">
+      <Unit filename="/home/student/Desktop/RobotVision/Man2 Rob project/../../../RobWork/RobWork/cmake/RobWorkConfig.cmake">
           <Option virtualFolder="CMake Files\..\..\..\RobWork\RobWork\cmake\" />
       </Unit>
-      <Unit filename="/home/student/workspace/RoVi/Man2 Rob project/../../../RobWork/RobWork/cmake/RobWorkBuildConfig_release.cmake">
+      <Unit filename="/home/student/Desktop/RobotVision/Man2 Rob project/../../../RobWork/RobWork/cmake/RobWorkBuildConfig_release.cmake">
           <Option virtualFolder="CMake Files\..\..\..\RobWork\RobWork\cmake\" />
       </Unit>
    </Project>

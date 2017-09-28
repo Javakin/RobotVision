@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/student/workspace/RoVi/Man2 Rob project/src/Main.cpp" "/home/student/workspace/RoVi/Man2 Rob project-build/CMakeFiles/RobMan2.dir/src/Main.cpp.o"
+  "/home/student/Desktop/RobotVision/Man2 Rob project/src/Main.cpp" "/home/student/Desktop/RobotVision/Man2 Rob project-build/CMakeFiles/RobMan2.dir/src/Main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
