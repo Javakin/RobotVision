@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8.11)
+project(VisPic2)
+find_package(OpenCV 3 REQUIRED)
+add_executable(VisPic2 src/main.cpp)
+target_link_libraries(VisPic2 ${OpenCV_LIBS})

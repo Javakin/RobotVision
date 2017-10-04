@@ -1,0 +1,3 @@
+/home/student/workspace/RoVi/Vision project1/Vision pic2/build/CMakeFiles/edit_cache.dir
+/home/student/workspace/RoVi/Vision project1/Vision pic2/build/CMakeFiles/rebuild_cache.dir
+/home/student/workspace/RoVi/Vision project1/Vision pic2/build/CMakeFiles/VisPic2.dir
