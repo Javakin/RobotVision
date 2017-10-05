@@ -89,7 +89,9 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
     }
 
     Mat histImage2( hist_h, bin_w*theHistogram.rows + 20, CV_8UC3, Scalar( 0,0,0) );
-
+    
+    
+    
     return histImage2;
 }
 
