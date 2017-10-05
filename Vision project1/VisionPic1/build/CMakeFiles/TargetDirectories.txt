@@ -1,0 +1,3 @@
+/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build/CMakeFiles/edit_cache.dir
+/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build/CMakeFiles/rebuild_cache.dir
+/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build/CMakeFiles/VisionPic1.dir
