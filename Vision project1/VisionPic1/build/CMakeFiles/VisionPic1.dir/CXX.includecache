@@ -11,6 +11,8 @@ opencv2/opencv.hpp
 -
 iostream
 -
+string
+-
 
 /opt/ros/kinetic/include/opencv-3.2.0-dev/opencv/cxcore.h
 opencv2/core/core_c.h
