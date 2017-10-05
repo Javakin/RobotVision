@@ -42,7 +42,11 @@ int main()
 
     // draw histogram of expected uniform area
     cv::Mat uniform(img,Rect(1000,1500,500,300));
-    displayImage("Uniform Area", paintHist(uniform, 1000, 512));
+    displayImage("Uniform Area", paintHist(uniform, 1500, 512));
+
+    // remove the pepper noise
+
+    // remove the other noise
 
 
     return 0;
@@ -83,12 +87,17 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
     for( int i = 0; i < theHistogram.rows-1; i++ ){                             //For each histogram colum
         for(int x = 0; x < bin_w ;x++){                                         //for each vertical pixel in the colum
             for(int y = hist_h ;y> hist_h-theHistogram.at<float>(i);y--){       //for each horizontal pixel in the colum
-                histImage.at<Vec3b>(Point(i*bin_w+x,y))[2] = 255;               //Make pixel white
+                histImage.at<Vec3b>(Point(i*bin_w+x,y))[0] = 255;               //Make pixel white
+                histImage.at<Vec3b>(Point(i*bin_w+x,y))[1] = 255;
+                histImage.at<Vec3b>(Point(i*bin_w+x,y))[2] = 255;
             }
         }
     }
 
-    Mat histImage2( hist_h, bin_w*theHistogram.rows + 20, CV_8UC3, Scalar( 0,0,0) );
+    // add borders to the histogram
+    Mat histImage2;
+    copyMakeBorder(histImage, histImage2, cvRound(hist_w*0.02), cvRound(hist_w*0.02), cvRound(hist_w*0.1),
+                   cvRound(hist_w*0.1), BORDER_CONSTANT, Scalar(50,50,50));
 
     return histImage2;
 }
