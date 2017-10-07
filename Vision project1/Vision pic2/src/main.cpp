@@ -38,6 +38,50 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
     return histImage;
 }
 
+void displayImage(std::string figureText, cv::Mat img){
+    cv::namedWindow("image",CV_WINDOW_NORMAL);
+    cv::resizeWindow("image", 600,600);
+    cv::imshow("image", img);
+    cv::waitKey();
+}
+uchar medianCalc(Mat src, int Xin, int Yin, int size,int MaxSize = 14){
+    vector<uchar> itemList;
+    uchar color;
+
+
+    for(int x = -(size/2); x<(size/2)+1;x++){
+        int y = 0;
+        for(int y = -(size/2); y<(size/2)+1;y++){
+            color = src.at<uchar>(Point(x+Xin,y+Yin));
+            if(color < 255 && color>0){
+                itemList.push_back(color);
+            }
+        }
+    }
+    if(itemList.size()==0){
+        if(size <MaxSize)
+            itemList.push_back(medianCalc(src,Xin,Yin,size+2));
+        else
+            itemList.push_back(color);
+    }
+    std::sort(itemList.begin(),itemList.end());
+    return itemList.at(itemList.size()/2);
+}
+
+void saltPepperFilter(Mat src, Mat &dst,int size, int border = 14){
+    Mat Image;
+    src.copyTo(Image);
+    cv::copyMakeBorder(Image,Image,border,border,border,border,cv::BORDER_REPLICATE);
+    for(int x = border; x<Image.cols-border; x++){
+        for(int y = border; y<Image.rows-border; y++){
+            if(Image.at<uchar>(Point(x,y)) == 0 || Image.at<uchar>(Point(x,y)) == 255)
+                Image.at<uchar>(Point(x,y)) = medianCalc(Image,x,y,size,border);
+        }
+    }
+    cv::Mat Noborder(Image,Rect(border,border,Image.cols-2*border,Image.rows-2*border));
+    dst = Noborder;
+}
+
 int main(int argc, char* argv[])
 {
     // Parse command line arguments
@@ -50,7 +94,6 @@ int main(int argc, char* argv[])
         parser.printMessage();
         return 0;
     }
-
     // Load image
     std::string filename = parser.get<std::string>("@image");
     cv::Mat img = cv::imread(filename);
@@ -59,36 +102,47 @@ int main(int argc, char* argv[])
         std::cout << "Input image not found at '" << filename << "'\n";
         return 1;
     }
+
+    // convert to GrayScale
     cv::Mat imgGray;
     cvtColor(img,imgGray,CV_BGR2GRAY);
+
+    // Make histogram
     cv::Mat hist = paintHist(imgGray,512,512);
-    cv::imshow("Original",imgGray);
-    cv::imshow("histogram",hist);
+    // cv::imshow("histogram",hist);
 
-    cv::Mat fix1;
+
+    displayImage("Original",imgGray);
+
+
+    //FIX 1 apply median filter
+    /*cv::Mat fix1;
     medianBlur(imgGray,fix1,9);
-    cv::imshow("fix1",fix1);
+    resize(fix1,disp,Size(),0.25,0.25,CV_INTER_AREA);
+    cv::imshow("fix1",disp);*/
 
-    Mat eqImg;
-    equalizeHist( fix1, eqImg );
-    cv::imshow("equilised",eqImg);
+    //FIX 2
+    cv::Mat fix2;
+    saltPepperFilter(imgGray,fix2,3);
+    displayImage("fix2",fix2);
 
+    //FIX 2.1
+    cv::Mat fix2_1;
+    cv::Mat Rectangle(fix2,Rect(1000,1500,500,300));
+    displayImage("retangle",Rectangle);
+    displayImage("hist",paintHist(Rectangle,512,512));
 
+    //This code was used to determin the gausian filter size
+    /*for(int i = 1; i<20;i+=2){
+        GaussianBlur(fix2,fix2_1,Size(i,i),0 ,0);
+        displayImage("Gausian filtered",fix2_1);
+    }*/
+    GaussianBlur(fix2,fix2_1,Size(5,5),0 ,0);
+    displayImage("Gausian filtered",fix2_1);
 
-    /*// Task 4 -------------- Filtering using 2d filtering_______________________________________________________________________
-    Mat kernel = (Mat_<float>(3,3) <<    0.1, 0.1, 0.1,
-                                         0.1, 0.2, 0.1,
-                                         0.1, 0.1, 0.1);
-    Mat imgFiltered;
-    //Mat kernel = Mat::ones( 3, 3, CV_32F )/ (float)(9);
-    filter2D(imgGray, imgFiltered, -1, kernel, Point(-1,-1), 0, BORDER_DEFAULT);
-
-    calcHist( &imgFiltered, 1, channels, Mat(),hist, 1, histSize, ranges,true, false);
-    Mat hist3 = paintHist(hist, 400, 400);
-    cv::imshow("filtered",imgFiltered);
-    cv::imshow("filtered Hist",hist3);*/
-
-    // Task 5 -------------- Filtering using 2d filtering_______________________________________________________________________
+    cv::Mat Rectangle2_1(fix2_1,Rect(1000,1500,500,300));
+    displayImage("retangle",Rectangle2_1);
+    displayImage("hist",paintHist(Rectangle2_1,512,512));
 
     cv::waitKey();
 

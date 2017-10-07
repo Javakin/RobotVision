@@ -397,6 +397,7 @@ CMakeFiles/RobMan2.dir/src/Main.cpp.o
  /home/student/RobWork/RobWork/cmake/../src/rwlibs/pathplanners/rrt/RRTPlanner.hpp
  /home/student/RobWork/RobWork/cmake/../src/rwlibs/pathplanners/rrt/RRTQToQPlanner.hpp
  /home/student/RobWork/RobWork/cmake/../src/rwlibs/proximitystrategies/ProximityStrategyFactory.hpp
+ /home/student/workspace/RoVi/Man2 Rob project/src/Main.cpp
  /usr/local/include/eigen3/Eigen/Cholesky
  /usr/local/include/eigen3/Eigen/Core
  /usr/local/include/eigen3/Eigen/Dense
