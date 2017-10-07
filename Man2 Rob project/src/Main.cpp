@@ -44,7 +44,8 @@ int main(int argc, char** argv) {
     const string deviceName = "KukaKr16";
     cout << "Trying to use workcell " << wcFile << " and device " << deviceName << endl;
 
-
+    // initialize see
+    rw::math::Math::seed();
 
     WorkCell::Ptr wc = WorkCellLoader::Factory::load(wcFile);
     Device::Ptr device = wc->findDevice(deviceName);
