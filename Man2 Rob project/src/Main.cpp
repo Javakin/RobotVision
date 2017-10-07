@@ -16,7 +16,7 @@ using namespace rw::trajectory;
 using namespace rwlibs::pathplanners;
 using namespace rwlibs::proximitystrategies;
 
-#define MAXTIME 10.
+#define MAXTIME 60.
 
 bool checkCollisions(Device::Ptr device, const State &state, const CollisionDetector &detector, const Q &q) {
     State testState;
@@ -45,6 +45,8 @@ int main(int argc, char** argv) {
 
     WorkCell::Ptr wc = WorkCellLoader::Factory::load(wcFile);
     Device::Ptr device = wc->findDevice(deviceName);
+
+    // check that the device has been correctly added
     if (device == NULL) {
         cerr << "Device: " << deviceName << " not found!" << endl;
         return 0;
@@ -66,9 +68,13 @@ int main(int argc, char** argv) {
     double extend = 0.1;
     QToQPlanner::Ptr planner = RRTPlanner::makeQToQPlanner(constraint, sampler, metric, extend, RRTPlanner::RRTConnect);
 
-    Q from(6,-0.2,-0.6,1.5,0.0,0.6,1.2);
+    //Q from(6,-0.2,-0.6,1.5,0.0,0.6,1.2);
     //Q to(6,1.7,0.6,-0.8,0.3,0.7,-0.5); // Very difficult for planner
-    Q to(6,1.4,-1.3,1.5,0.3,1.3,1.6);
+    //Q to(6,1.4,-1.3,1.5,0.3,1.3,1.6);
+
+    Q from(6, -3.142, -0.827, -3.002, -3.143, 0.099, -1.573); // exercise path
+    Q to(6, 1.571, 0.006, 0.03, 0.153, 0.762, 4.49);
+
 
     if (!checkCollisions(device, state, detector, from))
         return 0;
