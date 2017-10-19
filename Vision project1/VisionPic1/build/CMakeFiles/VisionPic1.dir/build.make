@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/student/Desktop/RobotVision/Vision project1/VisionPic1"
+CMAKE_SOURCE_DIR = /home/tera/Desktop/pic
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build"
+CMAKE_BINARY_DIR = /home/tera/Desktop/pic/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/VisionPic1.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/VisionPic1.dir/flags.make
 
 CMakeFiles/VisionPic1.dir/src/main.cpp.o: CMakeFiles/VisionPic1.dir/flags.make
 CMakeFiles/VisionPic1.dir/src/main.cpp.o: ../src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/VisionPic1.dir/src/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VisionPic1.dir/src/main.cpp.o -c "/home/student/Desktop/RobotVision/Vision project1/VisionPic1/src/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/tera/Desktop/pic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/VisionPic1.dir/src/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/VisionPic1.dir/src/main.cpp.o -c /home/tera/Desktop/pic/src/main.cpp
 
 CMakeFiles/VisionPic1.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/VisionPic1.dir/src/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/student/Desktop/RobotVision/Vision project1/VisionPic1/src/main.cpp" > CMakeFiles/VisionPic1.dir/src/main.cpp.i
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/tera/Desktop/pic/src/main.cpp > CMakeFiles/VisionPic1.dir/src/main.cpp.i
 
 CMakeFiles/VisionPic1.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/VisionPic1.dir/src/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/student/Desktop/RobotVision/Vision project1/VisionPic1/src/main.cpp" -o CMakeFiles/VisionPic1.dir/src/main.cpp.s
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/tera/Desktop/pic/src/main.cpp -o CMakeFiles/VisionPic1.dir/src/main.cpp.s
 
 CMakeFiles/VisionPic1.dir/src/main.cpp.o.requires:
 
@@ -90,50 +90,25 @@ VisionPic1_EXTERNAL_OBJECTS =
 
 VisionPic1: CMakeFiles/VisionPic1.dir/src/main.cpp.o
 VisionPic1: CMakeFiles/VisionPic1.dir/build.make
-VisionPic1: /opt/ros/kinetic/lib/libopencv_stitching3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_superres3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_videostab3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_aruco3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_bgsegm3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_bioinspired3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_ccalib3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_cvv3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_datasets3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_dpm3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_face3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_fuzzy3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_hdf3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_line_descriptor3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_optflow3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_plot3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_reg3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_saliency3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_stereo3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_structured_light3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_surface_matching3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_text3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_xfeatures2d3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_ximgproc3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_xobjdetect3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_xphoto3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_shape3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_video3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_viz3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_phase_unwrapping3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_rgbd3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_calib3d3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_features2d3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_flann3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_objdetect3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_ml3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_highgui3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_photo3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_videoio3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_imgcodecs3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_imgproc3.so.3.2.0
-VisionPic1: /opt/ros/kinetic/lib/libopencv_core3.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_shape.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_stitching.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_superres.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_videostab.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_viz.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_objdetect.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_calib3d.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_features2d.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_flann.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_highgui.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_ml.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_photo.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_video.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_videoio.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_imgcodecs.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_imgproc.so.3.2.0
+VisionPic1: /usr/local/lib/libopencv_core.so.3.2.0
 VisionPic1: CMakeFiles/VisionPic1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable VisionPic1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/tera/Desktop/pic/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable VisionPic1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/VisionPic1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -150,6 +125,6 @@ CMakeFiles/VisionPic1.dir/clean:
 .PHONY : CMakeFiles/VisionPic1.dir/clean
 
 CMakeFiles/VisionPic1.dir/depend:
-	cd "/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/home/student/Desktop/RobotVision/Vision project1/VisionPic1" "/home/student/Desktop/RobotVision/Vision project1/VisionPic1" "/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build" "/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build" "/home/student/Desktop/RobotVision/Vision project1/VisionPic1/build/CMakeFiles/VisionPic1.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /home/tera/Desktop/pic/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/tera/Desktop/pic /home/tera/Desktop/pic /home/tera/Desktop/pic/build /home/tera/Desktop/pic/build /home/tera/Desktop/pic/build/CMakeFiles/VisionPic1.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/VisionPic1.dir/depend
 

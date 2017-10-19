@@ -24,7 +24,7 @@ Mat paintHist(Mat img, int hist_w, int hist_h);
 int main()
 {
     // Load image
-    std::string filename = "../../Image1.png";
+    std::string filename = "../data/Image1.png";
     cv::Mat img = cv::imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
 
     if (img.empty()) {
@@ -82,7 +82,7 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
     normalize(theHistogram, theHistogram, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
 
     cout << "bin_w*theHistogram.rows" << bin_w*theHistogram.rows << endl;
-
+    cout << theHistogram << endl;
 
     for( int i = 0; i < theHistogram.rows-1; i++ ){                             //For each histogram colum
         for(int x = 0; x < bin_w ;x++){                                         //for each vertical pixel in the colum

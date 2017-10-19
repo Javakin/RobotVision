@@ -1,3 +1,0 @@
-/home/tera/Desktop/pic/build/CMakeFiles/edit_cache.dir
-/home/tera/Desktop/pic/build/CMakeFiles/rebuild_cache.dir
-/home/tera/Desktop/pic/build/CMakeFiles/VisionPic1.dir
