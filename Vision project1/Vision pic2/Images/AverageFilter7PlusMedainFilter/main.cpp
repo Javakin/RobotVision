@@ -11,13 +11,6 @@
 using namespace cv;
 using namespace std;
 
-void displayImage(std::string figureText, cv::Mat img){
-    cv::namedWindow("image",CV_WINDOW_NORMAL);
-    cv::resizeWindow("image", 600,600);
-    cv::imshow("image", img);
-    cv::waitKey();
-}
-
 Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
 
     Mat theHistogram;
@@ -32,6 +25,7 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
     int bin_w = cvRound( (double) hist_w/theHistogram.rows );                   //calculate colum width
     Mat histImage( hist_h, bin_w*theHistogram.rows, CV_8UC3, Scalar( 0,0,0) );  // initialize image
 
+
     // Normalize histogram values to be within image height
     normalize(theHistogram, theHistogram, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
 
@@ -44,15 +38,21 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
             }
         }
     }
+
     // add borders to the histogram
-    const int border = 10;
-    copyMakeBorder(histImage, histImage, border, border, border,
-                  border, BORDER_CONSTANT, Scalar(50,50,50));
-	
-    return histImage;
+    Mat histImage2;
+    copyMakeBorder(histImage, histImage2, cvRound(hist_w*0.02), cvRound(hist_w*0.02), cvRound(hist_w*0.1),
+                   cvRound(hist_w*0.1), BORDER_CONSTANT, Scalar(50,50,50));
+
+    return histImage2;
 }
 
-
+void displayImage(std::string figureText, cv::Mat img){
+    cv::namedWindow("image",CV_WINDOW_NORMAL);
+    cv::resizeWindow("image", 600,600);
+    cv::imshow("image", img);
+    cv::waitKey();
+}
 uchar medianCalc(Mat src, int Xin, int Yin, int size,int MaxSize = 14){
     vector<uchar> itemList;
     uchar color;
@@ -161,14 +161,20 @@ int main(int argc, char* argv[])
 	displayImage("hist",paintHist(imgGray,512,512));
 
     //FIX 2
-	cv::Mat fix2;
-	saltPepperFilter(imgGray,fix2,3);
+    cv::Mat fix2;
+	saltPepperAvgFilter(imgGray,fix2,7);
+	displayImage("fix2",fix2);
+	displayImage("hist",paintHist(fix2,512,512));
+	
+	cv::Mat fix3;
+	saltPepperFilter(fix2,fix3,3);
+	
     displayImage("fix2",fix2);
 	displayImage("hist",paintHist(fix2,512,512));
 	
     //FIX 2.1
     cv::Mat fix2_1;
-    cv::Mat Rectangle(fix2,Rect(1000,1500,500,300));
+    cv::Mat Rectangle(fix3,Rect(1000,1500,500,300));
     displayImage("retangle",Rectangle);
     displayImage("hist",paintHist(Rectangle,512,512));
 	
@@ -178,6 +184,8 @@ int main(int argc, char* argv[])
     cv::Mat Rectangle2_1(fix2_1,Rect(1000,1500,500,300));
     displayImage("retangle",Rectangle2_1);
     displayImage("hist",paintHist(Rectangle2_1,512,512));
+	
+    cv::waitKey();
 
     return 0;
 }

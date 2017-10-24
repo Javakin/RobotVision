@@ -110,7 +110,7 @@ void saltPepperFilter(Mat src, Mat &dst,int size, int border = 14){
     cv::copyMakeBorder(Image,Image,border,border,border,border,cv::BORDER_REPLICATE);
     for(int x = border; x<Image.cols-border; x++){
         for(int y = border; y<Image.rows-border; y++){
-            //if(Image.at<uchar>(Point(x,y)) == 0 || Image.at<uchar>(Point(x,y)) == 255)
+            if(Image.at<uchar>(Point(x,y)) == 0 || Image.at<uchar>(Point(x,y)) == 255)
                 Image.at<uchar>(Point(x,y)) = medianCalc(Image,x,y,size,border);
         }
     }
@@ -163,8 +163,8 @@ int main(int argc, char* argv[])
     //FIX 2
 	cv::Mat fix2;
 	saltPepperFilter(imgGray,fix2,3);
-    displayImage("fix2",fix2);
-	displayImage("hist",paintHist(fix2,512,512));
+    //displayImage("fix2",fix2);
+
 	
     //FIX 2.1
     cv::Mat fix2_1;
