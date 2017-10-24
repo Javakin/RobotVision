@@ -19,6 +19,12 @@ using namespace rwlibs::proximitystrategies;
 
 #define MAXTIME 60.
 
+
+WorkCell::Ptr wc;
+Device::Ptr device;
+rw::kinematics::Frame* gripper;
+rw::kinematics::Frame* bottle;
+
 bool checkCollisions(Device::Ptr device, const State &state, const CollisionDetector &detector, const Q &q) {
     State testState;
     CollisionDetector::QueryResult data;
@@ -39,6 +45,44 @@ bool checkCollisions(Device::Ptr device, const State &state, const CollisionDete
     return true;
 }
 
+double pathLength(QPath path,State state){
+    if(path.size() == 0) return 0;
+    Q pos1,pos2;
+    Transform3D<double> tra1,tra2;
+    Vector3D<double> vec;
+    pos2 = path[0];
+    double Length = 0;
+    for(unsigned int i = 1; i<path.size(); i++){
+        pos1 = path[i];
+	
+        device->setQ(pos1,state);
+        tra1 = device->baseTframe(bottle,state);
+	
+        device->setQ(pos2,state);
+        tra2 = device->baseTframe(bottle,state);
+
+	vec = tra2.P()-tra1.P();
+	Length+= vec.norm2();
+	pos2 = pos1;
+    }
+    return Length;
+
+}
+double configLength(QPath path){
+    if(path.size() == 0) return 0;
+    Q pos1,pos2;
+    pos2 = path[0];
+    double Length = 0;
+    for(unsigned int i = 1; i<path.size(); i++){
+        pos1 = path[i];
+	pos2 -=pos1;
+	Length+= pos2.norm2();
+	pos2 = pos1;
+    }
+    return Length;
+
+}
+
 void exportLUA(QPath path){
     // write the data toan executable Lua file
     ofstream myfile;
@@ -56,7 +100,7 @@ void exportLUA(QPath path){
         myfile << "qq = rw.Q(#q,q[1],q[2],q[3],q[4],q[5],q[6])" << endl;
         myfile << "device:setQ(qq,state)" << endl;
         myfile << "rws.getRobWorkStudio():setState(state)" << endl;
-        myfile << "rw.sleep(0.1)" << endl;
+        myfile << "rw.sleep(0.01)" << endl;
         myfile << "end" << endl;
 
         myfile << "function attach(obj, tool)" << endl;
@@ -96,9 +140,10 @@ int main(int argc, char** argv) {
 
     // initialize see
     rw::math::Math::seed();
-
-    WorkCell::Ptr wc = WorkCellLoader::Factory::load(wcFile);
-    Device::Ptr device = wc->findDevice(deviceName);
+    Timer t;
+    QPath path;
+    wc = WorkCellLoader::Factory::load(wcFile);
+    device = wc->findDevice(deviceName);
 
     // check that the device has been correctly added
     if (device == NULL) {
@@ -111,10 +156,9 @@ int main(int argc, char** argv) {
     Q to(6, 1.571, 0.006, 0.03, 0.153, 0.762, 4.49);
 
     device->setQ(from,state);
-    rw::kinematics::Frame*  gripper = wc->findFrame("Tool");
-    rw::kinematics::Frame*  bottle = wc->findFrame("Bottle");
-    rw::kinematics::Kinematics::gripFrame(gripper,device->getEnd(), state);
-    rw::kinematics::Kinematics::gripFrame(bottle,gripper, state);
+    gripper = wc->findFrame("Tool");
+    bottle = wc->findFrame("Bottle");
+    rw::kinematics::Kinematics::gripFrame(bottle, gripper, state);
 
     CollisionDetector detector(wc, ProximityStrategyFactory::makeDefaultCollisionStrategy());
     PlannerConstraint constraint = PlannerConstraint::make(&detector,device,state);
@@ -122,14 +166,19 @@ int main(int argc, char** argv) {
     /** Most easy way: uses default parameters based on given device
         sampler: QSampler::makeUniform(device)
         metric: PlannerUtil::normalizingInfinityMetric(device->getBounds())
-        extend: 0.05 */
-    //QToQPlanner::Ptr planner = RRTPlanner::makeQToQPlanner(constraint, device, RRTPlanner::RRTConnect);
+    extend: 0.05 */
+
+   
 
     /** More complex way: allows more detailed definition of parameters and methods */
     QSampler::Ptr sampler = QSampler::makeConstrained(QSampler::makeUniform(device),constraint.getQConstraintPtr());
     QMetric::Ptr metric = MetricFactory::makeEuclidean<Q>();
+
+    //###################################################################################################
+    //for generating lua script
+    
     double extend = 0.1;
-    QToQPlanner::Ptr planner = RRTPlanner::makeQToQPlanner(constraint, sampler, metric, extend, RRTPlanner::RRTConnect);
+     QToQPlanner::Ptr planner = RRTPlanner::makeQToQPlanner(constraint, sampler, metric, extend, RRTPlanner::RRTBalancedBidirectional);
     
 
     if (!checkCollisions(device, state, detector, from))
@@ -137,29 +186,60 @@ int main(int argc, char** argv) {
     if (!checkCollisions(device, state, detector, to))
         return 0;
 
-    cout << "Planning from " << from << " to " << to << endl;
-    QPath path;
-    Timer t;
+	cout << "Planning from " << from << " to " << to << endl;
+
     t.resetAndResume();
     planner->query(from,to,path,MAXTIME);
     t.pause();
+    
     cout << "Path of length " << path.size() << " found in " << t.getTime() << " seconds." << endl;
     if (t.getTime() >= MAXTIME) {
         cout << "Notice: max time of " << MAXTIME << " seconds reached." << endl;
+	}
+    
+    cout << pathLength(path,state)<< endl;;
+    exportLUA(path);
+    
+    
+    //###################################################################################################
+    // For generating test statistics
+    /*
+    int loops = 40;
+    QPath reset;
+    ofstream myfile;
+    double Length[loops];
+    double ConLength[loops];
+    
+    myfile.open ("../Test_statistics2.txt");
+    if (!myfile.is_open()){
+      cout << "file not found" << endl;
+      return 1;
     }
 
-    // print the path in the cout terminal
-    /*for (unsigned  int n = 0; n < path.size(); n++){
-        std::cout << "setQ({";
-        cout << path[n][0];
-        for(unsigned int i = 1; i<6; i++){
-           cout << ", " << path[n][i];
-        }
-        std::cout << "})" << endl;
-    }*/
-
-    exportLUA(path);
-
+    for (double extend = 0.5 ; extend < 10; extend += 0.5){
+      cout << "extend: " << extend << flush;
+      QToQPlanner::Ptr planner = RRTPlanner::makeQToQPlanner(constraint, sampler, metric, extend, RRTPlanner::RRTBalancedBidirectional);
+      myfile << endl << extend << ",";
+      for(int i = 0; i<loops; i++){
+	path = reset;
+	t.resetAndResume();
+	planner->query(from,to,path,MAXTIME);
+	t.pause();
+	Length[i] = pathLength(path,state);
+	ConLength[i] = configLength(path);
+	myfile << t.getTime() <<", ";
+	cout << ";" << i<< flush; 
+      }
+      for(int i = 0; i<loops;i++){
+	myfile << Length[i] << ", ";
+      }
+      for(int i = 0; i<loops;i++){
+	myfile << ConLength[i] << ", ";
+      }
+      cout << endl;
+     }
+    */
+    //###################################################################################################
 
     cout << "Program done." << endl;
     return 0;
