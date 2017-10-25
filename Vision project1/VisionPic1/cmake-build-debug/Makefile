@@ -48,10 +48,10 @@ RM = /home/tera/clion-2017.2.2/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/tera/Desktop/RobotVision/VisionPic1
+CMAKE_SOURCE_DIR = "/home/tera/Desktop/RobotVision/Vision project1/VisionPic1"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/tera/Desktop/RobotVision/VisionPic1/cmake-build-debug
+CMAKE_BINARY_DIR = "/home/tera/Desktop/RobotVision/Vision project1/VisionPic1/cmake-build-debug"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tera/Desktop/RobotVision/VisionPic1/cmake-build-debug/CMakeFiles /home/tera/Desktop/RobotVision/VisionPic1/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/tera/Desktop/RobotVision/Vision project1/VisionPic1/cmake-build-debug/CMakeFiles" "/home/tera/Desktop/RobotVision/Vision project1/VisionPic1/cmake-build-debug/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/tera/Desktop/RobotVision/VisionPic1/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/tera/Desktop/RobotVision/Vision project1/VisionPic1/cmake-build-debug/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named VisionPic1
+# Target rules for targets named VisionPic3
 
 # Build rule for target.
-VisionPic1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 VisionPic1
-.PHONY : VisionPic1
+VisionPic3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 VisionPic3
+.PHONY : VisionPic3
 
 # fast build rule for target.
-VisionPic1/fast:
-	$(MAKE) -f CMakeFiles/VisionPic1.dir/build.make CMakeFiles/VisionPic1.dir/build
-.PHONY : VisionPic1/fast
+VisionPic3/fast:
+	$(MAKE) -f CMakeFiles/VisionPic3.dir/build.make CMakeFiles/VisionPic3.dir/build
+.PHONY : VisionPic3/fast
 
 src/main.o: src/main.cpp.o
 
@@ -129,7 +129,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/VisionPic1.dir/build.make CMakeFiles/VisionPic1.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/VisionPic3.dir/build.make CMakeFiles/VisionPic3.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -138,7 +138,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/VisionPic1.dir/build.make CMakeFiles/VisionPic1.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/VisionPic3.dir/build.make CMakeFiles/VisionPic3.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -147,7 +147,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/VisionPic1.dir/build.make CMakeFiles/VisionPic1.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/VisionPic3.dir/build.make CMakeFiles/VisionPic3.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -158,7 +158,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... VisionPic1"
+	@echo "... VisionPic3"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
