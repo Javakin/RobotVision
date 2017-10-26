@@ -30,7 +30,7 @@ void contraHarmonic(Mat src, Mat &dst, double Q);
 int main()
 {
     // Load image
-    std::string filename = "../data/Image1.png";
+    std::string filename = "../data/Image3.png";
     cv::Mat img = cv::imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
 
     if (img.empty()) {
@@ -45,16 +45,16 @@ int main()
 
     // Estimation of noise parameters
     // Draw histogram of expected uniform area
-    cv::Mat uniform(img,Rect(1000,1500,500,300));
-    displayImage("Uniform Area", paintHist(uniform, 1500, 512));
+    //cv::Mat uniform(img,Rect(1000,1500,500,300));
+    //displayImage("Uniform Area", paintHist(uniform, 1500, 512));
 
     // remove the unipolar pepper noise
     Mat dst;
-    adaptiveMedFilter(img, dst, 7, 0.8);
+    adaptiveMedFilter(img, dst, 7, 0.4);
     displayImage("Removed Pepper Noise", dst);
 
-    cv::Mat uniform2(dst,Rect(1000,1500,500,300));
-    displayImage("Uniform2 Area", paintHist(uniform2, 1500, 512));
+    //cv::Mat uniform2(dst,Rect(1000,1500,500,300));
+    //displayImage("Uniform2 Area", paintHist(uniform2, 1500, 512));
 
 
     // remove the gausian noise todo.
@@ -88,7 +88,7 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
 
     int bin_w = cvRound( (double) hist_w/theHistogram.rows );                   //calculate colum width
     Mat histImage( hist_h, bin_w*theHistogram.rows, CV_8UC3, Scalar( 0,0,0) );                   // initialize image
-
+    cout << theHistogram << endl;
 
     // Normalize histogram values to be within image height
     normalize(theHistogram, theHistogram, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
@@ -148,6 +148,7 @@ void adaptiveMedFilter(Mat src, Mat &dst, int maxSize, float quantile){
                 int q = (int)floor(size*size*quantile);
                 if ((uchar)vecFromMat[q] != (uchar)vecFromMat[0] || size == maxSize){
                     Ret.at<uchar>(Point(y,x)) = (uchar)vecFromMat[q];
+                    size = maxSize +1;
                 }
 
                 size += 2;

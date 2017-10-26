@@ -48,24 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/student/workspace/RoVi/Vision project1/VisionPic4"
+CMAKE_SOURCE_DIR = "/home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/student/workspace/RoVi/Vision project1/VisionPic4/build"
+CMAKE_BINARY_DIR = "/home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -78,11 +67,22 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/student/workspace/RoVi/Vision project1/VisionPic4/build/CMakeFiles" "/home/student/workspace/RoVi/Vision project1/VisionPic4/build/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3/build/CMakeFiles" "/home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3/build/CMakeFiles/progress.marks"
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/student/workspace/RoVi/Vision project1/VisionPic4/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Vision
+# Target rules for targets named VisionPic3
 
 # Build rule for target.
-Vision: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Vision
-.PHONY : Vision
+VisionPic3: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 VisionPic3
+.PHONY : VisionPic3
 
 # fast build rule for target.
-Vision/fast:
-	$(MAKE) -f CMakeFiles/Vision.dir/build.make CMakeFiles/Vision.dir/build
-.PHONY : Vision/fast
+VisionPic3/fast:
+	$(MAKE) -f CMakeFiles/VisionPic3.dir/build.make CMakeFiles/VisionPic3.dir/build
+.PHONY : VisionPic3/fast
 
 src/main.o: src/main.cpp.o
 
@@ -129,7 +129,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/Vision.dir/build.make CMakeFiles/Vision.dir/src/main.cpp.o
+	$(MAKE) -f CMakeFiles/VisionPic3.dir/build.make CMakeFiles/VisionPic3.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -138,7 +138,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/Vision.dir/build.make CMakeFiles/Vision.dir/src/main.cpp.i
+	$(MAKE) -f CMakeFiles/VisionPic3.dir/build.make CMakeFiles/VisionPic3.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -147,7 +147,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/Vision.dir/build.make CMakeFiles/Vision.dir/src/main.cpp.s
+	$(MAKE) -f CMakeFiles/VisionPic3.dir/build.make CMakeFiles/VisionPic3.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -156,9 +156,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Vision"
+	@echo "... edit_cache"
+	@echo "... VisionPic3"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

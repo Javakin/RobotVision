@@ -1,4 +1,4 @@
-# Install script for directory: /home/student/workspace/RoVi/Vision project1/VisionPic4
+# Install script for directory: /home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/student/workspace/RoVi/Vision project1/VisionPic4/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

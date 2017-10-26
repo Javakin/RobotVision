@@ -13,10 +13,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.5.1/CMakeSystem.cmake"
   "CMakeFiles/feature_tests.c"
   "CMakeFiles/feature_tests.cxx"
-  "/opt/ros/kinetic/share/OpenCV-3.2.0-dev/OpenCVConfig-version.cmake"
-  "/opt/ros/kinetic/share/OpenCV-3.2.0-dev/OpenCVConfig.cmake"
-  "/opt/ros/kinetic/share/OpenCV-3.2.0-dev/OpenCVModules-none.cmake"
-  "/opt/ros/kinetic/share/OpenCV-3.2.0-dev/OpenCVModules.cmake"
+  "/usr/local/share/OpenCV/OpenCVConfig-version.cmake"
+  "/usr/local/share/OpenCV/OpenCVConfig.cmake"
+  "/usr/local/share/OpenCV/OpenCVModules-release.cmake"
+  "/usr/local/share/OpenCV/OpenCVModules.cmake"
   "/usr/share/cmake-3.5/Modules/CMakeCCompiler.cmake.in"
   "/usr/share/cmake-3.5/Modules/CMakeCCompilerABI.c"
   "/usr/share/cmake-3.5/Modules/CMakeCInformation.cmake"
@@ -117,5 +117,5 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Vision.dir/DependInfo.cmake"
+  "CMakeFiles/VisionPic3.dir/DependInfo.cmake"
   )
