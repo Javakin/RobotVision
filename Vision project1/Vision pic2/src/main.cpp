@@ -35,7 +35,7 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
     // Normalize histogram values to be within image height
     normalize(theHistogram, theHistogram, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
 
-    for( int i = 0; i < theHistogram.rows-1; i++ ){                             //For each histogram colum
+    for( int i = 0; i < theHistogram.rows; i++ ){                             //For each histogram colum
         for(int x = 0; x < bin_w ;x++){                                         //for each vertical pixel in the colum
             for(int y = hist_h ;y> hist_h-theHistogram.at<float>(i);y--){       //for each horizontal pixel in the colum
                 histImage.at<Vec3b>(Point(i*bin_w+x,y))[0] = 255;               //Make pixel white
@@ -159,6 +159,8 @@ int main(int argc, char* argv[])
 
     // Make histogram
 	displayImage("hist",paintHist(imgGray,512,512));
+	
+	return 0;
 
     //FIX 2
 	cv::Mat fix2;
