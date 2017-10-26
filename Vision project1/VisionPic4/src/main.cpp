@@ -127,7 +127,7 @@ int main(int argc, char* argv[])
 
     dft(complexI, complexI);            // this way the result may fit in the source matrix
 	dftshift(complexI); 
-	Mat filter = blpf(320,5,complexI.size());
+	Mat filter = blpf(320,7,complexI.size());
 	cv::mulSpectrums(complexI, filter, complexI, 0);
 	dftshift(complexI); 
 	

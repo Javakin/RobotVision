@@ -35,7 +35,7 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
     // Normalize histogram values to be within image height
     normalize(theHistogram, theHistogram, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
 
-    for( int i = 0; i < theHistogram.rows-1; i++ ){                             //For each histogram colum
+    for( int i = 0; i < theHistogram.rows; i++ ){                             //For each histogram colum
         for(int x = 0; x < bin_w ;x++){                                         //for each vertical pixel in the colum
             for(int y = hist_h ;y> hist_h-theHistogram.at<float>(i);y--){       //for each horizontal pixel in the colum
                 histImage.at<Vec3b>(Point(i*bin_w+x,y))[0] = 255;               //Make pixel white
@@ -60,12 +60,12 @@ uchar medianCalc(Mat src, int Xin, int Yin, int size,int MaxSize = 14){
 
     for(int x = -(size/2); x<(size/2)+1;x++){
         int y = 0;
-        for(int y = -(size/2); y<(size/2)+1;y++){
+        /*for(int y = -(size/2); y<(size/2)+1;y++){
             color = src.at<uchar>(Point(x+Xin,y+Yin));
-            if(color < 255 && color>1){
+            if(color < 255 && color>0){
                 itemList.push_back(color);
             }
-        }
+        }*/
     }
     if(itemList.size()==0){
         if(size <MaxSize)
@@ -75,6 +75,33 @@ uchar medianCalc(Mat src, int Xin, int Yin, int size,int MaxSize = 14){
     }
     std::sort(itemList.begin(),itemList.end());
     return itemList.at(itemList.size()/2);
+}
+
+uchar AverageCalc(Mat src, int Xin, int Yin, int size,int MaxSize = 14){
+    vector<uchar> itemList;
+    uchar color;
+	
+	uchar colorPoint;
+
+    for(int x = -(size/2); x<(size/2)+1;x++){
+        for(int y = -(size/2); y<(size/2)+1;y++){
+            color = src.at<uchar>(Point(x+Xin,y+Yin));
+            if(color != 255 && color != 0){
+                itemList.push_back(color);
+            }
+        }
+    }
+    if(itemList.size()==0){
+        if(size <MaxSize)
+            itemList.push_back(AverageCalc(src,Xin,Yin,size+2));
+        else
+            itemList.push_back(color);
+    }
+    int sum = 0;
+    for(int i = 0; i<itemList.size();i++){ 
+		sum+=itemList.at(i);
+	}
+    return sum/(itemList.size()+1);
 }
 
 void saltPepperFilter(Mat src, Mat &dst,int size, int border = 14){
@@ -90,12 +117,27 @@ void saltPepperFilter(Mat src, Mat &dst,int size, int border = 14){
     cv::Mat Noborder(Image,Rect(border,border,Image.cols-2*border,Image.rows-2*border));
     dst = Noborder;
 }
+
+void saltPepperAvgFilter(Mat src, Mat &dst,int size, int border = 14){
+    Mat Image;
+    src.copyTo(Image);
+    cv::copyMakeBorder(Image,Image,border,border,border,border,cv::BORDER_REPLICATE);
+    for(int x = border; x<Image.cols-border; x++){
+        for(int y = border; y<Image.rows-border; y++){
+            //if(Image.at<uchar>(Point(x,y)) == 0 || Image.at<uchar>(Point(x,y)) == 255)
+				Image.at<uchar>(Point(x,y)) = AverageCalc(Image,x,y,size,border);
+        }
+    }
+    cv::Mat Noborder(Image,Rect(border,border,Image.cols-2*border,Image.rows-2*border));
+    dst = Noborder;
+}
+
 int main(int argc, char* argv[])
 {
     // Parse command line arguments
     cv::CommandLineParser parser(argc, argv,
         "{help   |           | print this message}"
-        "{@image | ../../Image2.png | image path}"
+        "{@image | ../../Image1.png | image path}"
     );
 
     if (parser.has("help")) {
@@ -116,26 +158,27 @@ int main(int argc, char* argv[])
     cvtColor(img,imgGray,CV_BGR2GRAY);
 
     // Make histogram
-	//displayImage("hist",paintHist(imgGray,512,512));
+	displayImage("hist",paintHist(imgGray,512,512));
+	
 
     //FIX 2
 	cv::Mat fix2;
 	saltPepperFilter(imgGray,fix2,3);
     displayImage("fix2",fix2);
-
+	//displayImage("hist",paintHist(fix2,512,512));
 	
     //FIX 2.1
     cv::Mat fix2_1;
     cv::Mat Rectangle(fix2,Rect(1000,1500,500,300));
     displayImage("retangle",Rectangle);
-    //displayImage("hist",paintHist(Rectangle,512,512));
+    displayImage("hist",paintHist(Rectangle,512,512));
 	
     GaussianBlur(fix2,fix2_1,Size(5,5),0 ,0);
     displayImage("Gausian filtered",fix2_1);
 
     cv::Mat Rectangle2_1(fix2_1,Rect(1000,1500,500,300));
     displayImage("retangle",Rectangle2_1);
-    //displayImage("hist",paintHist(Rectangle2_1,512,512));
+    displayImage("hist",paintHist(Rectangle2_1,512,512));
 
     return 0;
 }
