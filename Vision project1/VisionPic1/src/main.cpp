@@ -10,6 +10,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <math.h>    // ise pow
+
 
 // using namespaces
 using namespace std;
@@ -22,6 +24,7 @@ void displayImage(std::string figureText, cv::Mat img);
 Mat paintHist(Mat img, int hist_w, int hist_h);
 void adaptiveMedFilter(Mat src, Mat &dst, int maxSize, float quantile);
 void printVector(string aMessage, vector<double> aVector);
+void contraHarmonic(Mat src, Mat &dst, double Q);
 
 
 int main()
@@ -37,20 +40,24 @@ int main()
 
 
     // display image
-    //displayImage("Original Image", img);
+    displayImage("Original Image", img);
 
 
     // Estimation of noise parameters
     // Draw histogram of expected uniform area
-    //cv::Mat uniform(img,Rect(1000,1500,500,300));
-    //displayImage("Uniform Area", paintHist(uniform, 1500, 512));
+    cv::Mat uniform(img,Rect(1000,1500,500,300));
+    displayImage("Uniform Area", paintHist(uniform, 1500, 512));
 
     // remove the unipolar pepper noise
     Mat dst;
-    adaptiveMedFilter(img, dst, 14, 0.8);
+    adaptiveMedFilter(img, dst, 7, 0.8);
     displayImage("Removed Pepper Noise", dst);
 
-    // remove the raylight noise
+    cv::Mat uniform2(dst,Rect(1000,1500,500,300));
+    displayImage("Uniform2 Area", paintHist(uniform2, 1500, 512));
+
+
+    // remove the gausian noise todo.
 
 
     return 0;
@@ -111,7 +118,7 @@ void adaptiveMedFilter(Mat src, Mat &dst, int maxSize, float quantile){
     Mat Image;
     Mat Ret;
     // add borders to the image
-    int border = 14;
+    int border = maxSize/2;
     src.copyTo(Image);
 
     cv::copyMakeBorder(Image,Image,border,border,border,border,cv::BORDER_REPLICATE);
@@ -121,32 +128,35 @@ void adaptiveMedFilter(Mat src, Mat &dst, int maxSize, float quantile){
     Mat localDomain;
     int size = 3;
     std::vector<double> vecFromMat;
-    int q = (int)floor(size*size*quantile);
-    for(int x = border; x<Image.cols-border; x++){
-        for(int y = border; y<Image.rows-border; y++){
+    for(int x = border; x<Image.rows-border; x++){
+        for(int y = border; y<Image.cols-border; y++){
+
+            size = 3;
+            while (size <= maxSize){
+                // sort the elements
+                vecFromMat.clear();
+                for(int s = x-(border); s <= x+(border); s++){
+                    for(int t = y - (border ); t <= y + (border); t++){
+                        uchar color = Image.at<uchar>(s, t);
+                        vecFromMat.push_back( (double)color);
+                    }
+                }
+
+                std::sort( vecFromMat.begin(), vecFromMat.end() );          // sort vecFromMat
 
 
-        // sort the elements
-        // source:https://stackoverflow.com/questions/30078756/super-fast-median-of-matrix-in-opencv-as-fast-as-matlab
-        Mat window(Image,Rect(x-size/2, y-size/2,size,size));    // select a specific local domain
+                int q = (int)floor(size*size*quantile);
+                if ((uchar)vecFromMat[q] != (uchar)vecFromMat[0] || size == maxSize){
+                    Ret.at<uchar>(Point(y,x)) = (uchar)vecFromMat[q];
+                }
 
-        window.copyTo(localDomain);
-        localDomain = localDomain.reshape(0,1);                     // spread Input Mat to single row
+                size += 2;
 
-        localDomain.copyTo(vecFromMat);                             // Copy Input Mat to vector vecFromMat
-
-        std::sort( vecFromMat.begin(), vecFromMat.end() );          // sort vecFromMat
-
-        // select the quantile and insert in image
-        Ret.at<uchar>(Point(x,y)) = (uchar)vecFromMat[q];
-
-
-
-
+            }
         }
     }
 
-    displayImage("w borders", Ret);
+
     // remove the border
     cv::Mat Noborder(Ret,Rect(border,border,Image.cols-2*border,Image.rows-2*border));
     dst = Noborder;
@@ -159,6 +169,45 @@ void printVector(string aMessage, vector<double> aVector){
     }
     cout << endl;
 }
+
+void contraHarmonic(Mat src, Mat &dst, double Q){
+    // setup and add border
+    int border = 3 / 2;
+    src.copyTo(dst);
+    Mat Original;
+
+    cv::copyMakeBorder(dst,dst,border,border,border,border,cv::BORDER_REPLICATE);
+    dst.copyTo(Original);
+
+    int x = 0;
+    int y = 0;
+    for(x = border; x<dst.rows-border; x++){
+        for(y = border; y<dst.cols-border; y++) {
+            // perform filter
+            double num = 0;
+            double den = 0;
+            for(int s = x-(border); s <= x+(border); s++){
+                for(int t = y - (border ); t <= y + (border); t++){
+                    uchar color = Original.at<uchar>(s, t);
+                    num += pow(color,Q+1.);
+                    den += pow(color,Q);
+                }
+            }
+
+            dst.at<uchar>(x,y) = (uchar)num/den;
+
+        }
+
+    }
+
+
+    Mat Image;
+    dst.copyTo(Image);
+    cv::Mat Noborder(Image,Rect(border,border,Image.cols-2*border,Image.rows-2*border));
+    dst = Noborder;
+}
+
+
 
 
 
