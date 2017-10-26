@@ -40,7 +40,7 @@ int main()
 
 
     // display image
-    displayImage("Original Image", img);
+    //displayImage("Original Image", img);
 
 
     // Estimation of noise parameters
@@ -54,27 +54,50 @@ int main()
 
 
     // remove the unipolar pepper noise
-    Mat dst;
-    adaptiveMedFilter(img, dst, 3, 0.8);
-    displayImage("Removed Pepper Noise", dst);
+    Mat dst, dst2, dst3;
+    adaptiveMedFilter(img, dst, 3, 0.5);
+    displayImage("adaptiveMedFilter3", dst);
 
+    adaptiveMedFilter(img, dst2, 5, 0.5);
+    displayImage("adaptiveMedFilter5", dst2);
+
+    adaptiveMedFilter(img, dst3, 7, 0.5);
+    displayImage("adaptiveMedFilter7", dst3);
+
+
+    /*
     cv::Mat uniform2(dst,Rect(1000,1500,500,300));
     displayImage("Uniform2 Area", paintHist(uniform2, 1500, 512));
 
     displayImage("HistAll", dst);
 
-    // remove the gausian noise
+    // pass
 
+    cv::Mat Rectangle(dst,Rect(1000,1500,500,300));
+    displayImage("retangle",Rectangle);
+    displayImage("hist",paintHist(Rectangle,512,512));
+
+    // remove the gausian noise
+    Mat blur;
+    GaussianBlur( dst, blur, Size(5,5),0);
+    displayImage("Med Blur", blur);
+
+    // normalize image
+    Mat equ;
+    equalizeHist(blur, equ);
+    displayImage("eqialized", equ);*/
+
+    cv::waitKey();
     return 0;
 }
 
 
 // function definition
 void displayImage(std::string figureText, cv::Mat img){
-    cv::namedWindow("image",CV_WINDOW_NORMAL);
-    cv::resizeWindow("image", 600,600);
-    cv::imshow("image", img);
-    cv::waitKey();
+    cv::namedWindow(figureText ,CV_WINDOW_NORMAL);
+    cv::resizeWindow(figureText, 600,600);
+    cv::imshow(figureText, img);
+
 }
 
 

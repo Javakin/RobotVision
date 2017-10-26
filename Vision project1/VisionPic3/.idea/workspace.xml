@@ -25,11 +25,21 @@
       <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="263">
+              <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
               <folding>
                 <element signature="e#101#130#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.hpp" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/include/opencv2/core/base.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="261" column="4" lean-forward="false" selection-start-line="261" selection-start-column="4" selection-end-line="261" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,12 +138,12 @@
       <updated>1509033695258</updated>
       <workItem from="1509033696499" duration="760000" />
       <workItem from="1509036065155" duration="2114000" />
-      <workItem from="1509045534699" duration="256000" />
+      <workItem from="1509045534699" duration="3025000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3130000" />
+    <option name="totallyTimeSpent" value="5899000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1985" y="-4" width="1295" height="772" extended-state="6" />
@@ -193,10 +203,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/include/opencv2/core/base.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="261" column="4" lean-forward="false" selection-start-line="261" selection-start-column="4" selection-end-line="261" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="263">
+          <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
           <folding>
             <element signature="e#101#130#0" expanded="true" />
           </folding>
