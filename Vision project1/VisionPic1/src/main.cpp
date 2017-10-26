@@ -30,7 +30,7 @@ void contraHarmonic(Mat src, Mat &dst, double Q);
 int main()
 {
     // Load image
-    std::string filename = "../data/Image3.png";
+    std::string filename = "../data/Image1.png";
     cv::Mat img = cv::imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
 
     if (img.empty()) {
@@ -41,17 +41,25 @@ int main()
 
     // display image
     displayImage("Original Image", img);
+    imwrite( "../data/Image1Hist.png", paintHist(img, 1500, 512) );
 
 
     // Estimation of noise parameters
-    // Draw histogram of expected uniform area
-    //cv::Mat uniform(img,Rect(1000,1500,500,300));
+    Mat Orig;
+    cvtColor(img, Orig, cv::COLOR_GRAY2RGB);
+    rectangle(Orig, Point(1000,1500), Point(1500,1800), Scalar(0,0,255), 10, 8, 0);
+    imwrite( "../data/Image1UniformArea.png", Orig );
+
+    Mat uniform(img,Rect(1000,1500,500,300));
+    imwrite( "../data/Image1UniformHist.png", paintHist(uniform, 1500, 512) );
     //displayImage("Uniform Area", paintHist(uniform, 1500, 512));
 
-    // remove the unipolar pepper noise
+
+    // Remove the unipolar pepper noise
     Mat dst;
     adaptiveMedFilter(img, dst, 7, 0.4);
     displayImage("Removed Pepper Noise", dst);
+    imwrite( "../data/Image1AdaptiveMedFilter7.png", Orig );
 
     //cv::Mat uniform2(dst,Rect(1000,1500,500,300));
     //displayImage("Uniform2 Area", paintHist(uniform2, 1500, 512));
