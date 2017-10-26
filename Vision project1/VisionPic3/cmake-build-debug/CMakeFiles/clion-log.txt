@@ -1,4 +1,4 @@
-/home/jarvis/clion-2017.2.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3"
+/home/tera/clion-2017.2.2/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/tera/Desktop/RobotVision/Vision project1/VisionPic3"
 -- The C compiler identification is GNU 5.4.0
 -- The CXX compiler identification is GNU 5.4.0
 -- Check for working C compiler: /usr/bin/cc
@@ -16,4 +16,4 @@
 -- Found OpenCV: /usr/local (found version "3.2.0") 
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/jarvis/Desktop/RobotVision/Vision project1/VisionPic3/cmake-build-debug
+-- Build files have been written to: /home/tera/Desktop/RobotVision/Vision project1/VisionPic3/cmake-build-debug

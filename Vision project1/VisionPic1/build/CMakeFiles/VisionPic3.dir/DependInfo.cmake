@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tera/Desktop/RobotVision/Vision project1/VisionPic3/src/main.cpp" "/home/tera/Desktop/RobotVision/Vision project1/VisionPic3/cmake-build-debug/CMakeFiles/VisionPic3.dir/src/main.cpp.o"
+  "/home/tera/Desktop/RobotVision/Vision project1/VisionPic1/src/main.cpp" "/home/tera/Desktop/RobotVision/Vision project1/VisionPic1/build/CMakeFiles/VisionPic3.dir/src/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -55,12 +55,13 @@ int main()
 
     // remove the unipolar pepper noise
     Mat dst;
-    adaptiveMedFilter(img, dst, 7, 0.8);
+    adaptiveMedFilter(img, dst, 3, 0.8);
     displayImage("Removed Pepper Noise", dst);
 
     cv::Mat uniform2(dst,Rect(1000,1500,500,300));
     displayImage("Uniform2 Area", paintHist(uniform2, 1500, 512));
 
+    displayImage("HistAll", dst);
 
     // remove the gausian noise
 

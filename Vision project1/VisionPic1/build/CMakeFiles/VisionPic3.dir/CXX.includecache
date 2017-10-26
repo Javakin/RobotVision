@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,16 +6,10 @@
 
 #IncludeRegexTransform: 
 
-/home/tera/Desktop/RobotVision/Vision project1/VisionPic3/src/main.cpp
-opencv2/opencv.hpp
+/home/tera/Desktop/RobotVision/Vision project1/VisionPic1/src/main.cpp
+opencv2/core/core.hpp
 -
-iostream
--
-string
--
-vector
--
-math.h
+opencv2/viz/vizcore.hpp
 -
 
 /usr/local/include/opencv/cxcore.h
@@ -89,6 +83,10 @@ opencv2/core/neon_utils.hpp
 /usr/local/include/opencv2/core/opencv2/core/neon_utils.hpp
 
 /usr/local/include/opencv2/core/bufferpool.hpp
+
+/usr/local/include/opencv2/core/core.hpp
+opencv2/core.hpp
+/usr/local/include/opencv2/core/opencv2/core.hpp
 
 /usr/local/include/opencv2/core/core_c.h
 opencv2/core/types_c.h
