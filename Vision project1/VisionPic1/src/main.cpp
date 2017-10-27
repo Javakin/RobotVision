@@ -20,11 +20,9 @@ using namespace cv;
 
 // function declatations
 void displayImage(std::string figureText, cv::Mat img);
-//void drawHistogram(cv::Mat anImage );
 Mat paintHist(Mat img, int hist_w, int hist_h);
 void adaptiveMedFilter(Mat src, Mat &dst, int maxSize, float quantile);
-void printVector(string aMessage, vector<double> aVector);
-void contraHarmonic(Mat src, Mat &dst, double Q);
+
 
 
 int main()
@@ -40,7 +38,7 @@ int main()
 
 
     // display image
-    displayImage("Original Image", img);
+    //displayImage("Original Image", img);
     imwrite( "../data/Image1Hist.png", paintHist(img, 1500, 512) );
 
 
@@ -57,29 +55,33 @@ int main()
 
     // Remove the unipolar pepper noise
     Mat AmF;
-    adaptiveMedFilter(img, AmF, 7, 0.4);
+    adaptiveMedFilter(img, AmF, 7, 0.8);
     //displayImage("Removed Pepper Noise", dst);
-    imwrite( "../data/Image1AdaptiveMedFilter7.png", Orig );
+    imwrite( "../data/Image1AdaptiveMedFilter7.png", AmF );
 
     // New noise parameters
     Mat uniform1(AmF,Rect(1000,1500,500,300));
-    imwrite( "../data/Image1UniformHist1.png", paintHist(uniform1, 1500, 512));
+    imwrite( "../data/Image1UniformHist7.png", paintHist(uniform1, 1500, 512));
     //displayImage("Uniform Area", paintHist(uniform1, 1500, 512));
 
+    // equalize image
+    Mat equImg;
 
-    // remove the gausian noise todo.
+    equalizeHist(AmF, equImg);
+    displayImage("Eqialized", equImg);
+    imwrite( "../data/Equalised.png", equImg );
 
 
+    waitKey();
     return 0;
 }
 
 
 // function definition
 void displayImage(std::string figureText, cv::Mat img){
-    cv::namedWindow("image",CV_WINDOW_NORMAL);
-    cv::resizeWindow("image", 600,600);
-    cv::imshow("image", img);
-    cv::waitKey();
+    cv::namedWindow(figureText ,CV_WINDOW_NORMAL);
+    cv::resizeWindow(figureText, 600,600);
+    cv::imshow(figureText, img);
 }
 
 
@@ -95,32 +97,27 @@ Mat paintHist(Mat img, int hist_w, int hist_h){ // Plot the histogram
 
     calcHist( &img, 1, channels, Mat(), theHistogram, 1, histSize, ranges, true, false);
 
-
     int bin_w = cvRound( (double) hist_w/theHistogram.rows );                   //calculate colum width
-    Mat histImage( hist_h, bin_w*theHistogram.rows, CV_8UC3, Scalar( 0,0,0) );                   // initialize image
-    cout << theHistogram << endl;
+    Mat histImage( hist_h, bin_w*theHistogram.rows, CV_8UC3, Scalar( 0,0,0) );  // initialize image
 
     // Normalize histogram values to be within image height
     normalize(theHistogram, theHistogram, 0, histImage.rows, NORM_MINMAX, -1, Mat() );
 
-    cout << "bin_w*theHistogram.rows" << bin_w*theHistogram.rows << endl;
-
-    for( int i = 0; i < theHistogram.rows-1; i++ ){                             //For each histogram colum
+    for( int i = 0; i < theHistogram.rows; i++ ){                             //For each histogram colum
         for(int x = 0; x < bin_w ;x++){                                         //for each vertical pixel in the colum
-            for(int y = hist_h ;y> hist_h-theHistogram.at<float>(i);y--){       //for each horizontal pixel in the colum
+            for(int y = hist_h-1 ;y> hist_h-theHistogram.at<float>(i)+1;y--){       //for each horizontal pixel in the colum
                 histImage.at<Vec3b>(Point(i*bin_w+x,y))[0] = 255;               //Make pixel white
                 histImage.at<Vec3b>(Point(i*bin_w+x,y))[1] = 255;
                 histImage.at<Vec3b>(Point(i*bin_w+x,y))[2] = 255;
             }
         }
     }
-
     // add borders to the histogram
-    Mat histImage2;
-    copyMakeBorder(histImage, histImage2, cvRound(hist_w*0.02), cvRound(hist_w*0.02), cvRound(hist_w*0.1),
-                   cvRound(hist_w*0.1), BORDER_CONSTANT, Scalar(50,50,50));
+    const int border = 10;
+    copyMakeBorder(histImage, histImage, border, border, border,
+                   border, BORDER_CONSTANT, Scalar(50,50,50));
 
-    return histImage2;
+    return histImage;
 }
 
 void adaptiveMedFilter(Mat src, Mat &dst, int maxSize, float quantile){
@@ -173,50 +170,6 @@ void adaptiveMedFilter(Mat src, Mat &dst, int maxSize, float quantile){
     dst = Noborder;
 }
 
-void printVector(string aMessage, vector<double> aVector){
-    cout << aMessage << endl;
-    for(unsigned int i = 0; i<aVector.size(); i++){
-        cout << aVector[i] << " ";
-    }
-    cout << endl;
-}
-
-void contraHarmonic(Mat src, Mat &dst, double Q){
-    // setup and add border
-    int border = 3 / 2;
-    src.copyTo(dst);
-    Mat Original;
-
-    cv::copyMakeBorder(dst,dst,border,border,border,border,cv::BORDER_REPLICATE);
-    dst.copyTo(Original);
-
-    int x = 0;
-    int y = 0;
-    for(x = border; x<dst.rows-border; x++){
-        for(y = border; y<dst.cols-border; y++) {
-            // perform filter
-            double num = 0;
-            double den = 0;
-            for(int s = x-(border); s <= x+(border); s++){
-                for(int t = y - (border ); t <= y + (border); t++){
-                    uchar color = Original.at<uchar>(s, t);
-                    num += pow(color,Q+1.);
-                    den += pow(color,Q);
-                }
-            }
-
-            dst.at<uchar>(x,y) = (uchar)num/den;
-
-        }
-
-    }
-
-
-    Mat Image;
-    dst.copyTo(Image);
-    cv::Mat Noborder(Image,Rect(border,border,Image.cols-2*border,Image.rows-2*border));
-    dst = Noborder;
-}
 
 
 
