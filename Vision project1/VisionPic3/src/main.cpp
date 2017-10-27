@@ -67,7 +67,7 @@ int main()
     //imwrite( "../data/UniformHistB7.png", uniformHist );
 
 
-    // normalize image
+    // equalize image
     Mat equImg;
     equalizeHist(gBlur5, equImg);
     displayImage("Eqialized", equImg);
