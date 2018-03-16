@@ -39,7 +39,7 @@ int main()
 
     // display image
     //displayImage("Original Image", img);
-    imwrite( "../data/Image1Hist.png", paintHist(img, 1500, 512) );
+    imwrite( "../data/Image1Hist.png", paintHist(img, 720, 512) );
 
 
     // Estimation of noise parameters
@@ -49,7 +49,7 @@ int main()
     imwrite( "../data/Image1UniformArea.png", Orig );
 
     Mat uniform(img,Rect(1000,1500,500,300));
-    imwrite( "../data/Image1UniformHist.png", paintHist(uniform, 1500, 512) );
+    imwrite( "../data/Image1UniformHist.png", paintHist(uniform, 720, 512) );
     //displayImage("Uniform Area", paintHist(uniform, 1500, 512));
 
 
@@ -61,7 +61,7 @@ int main()
 
     // New noise parameters
     Mat uniform1(AmF,Rect(1000,1500,500,300));
-    imwrite( "../data/Image1UniformHist7.png", paintHist(uniform1, 1500, 512));
+    imwrite( "../data/Image1UniformHist7.png", paintHist(uniform1, 720, 512));
     //displayImage("Uniform Area", paintHist(uniform1, 1500, 512));
 
     // equalize image
